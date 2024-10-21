@@ -1,6 +1,6 @@
-# 🐳 Homelab DCC Container
+# 🐳 Homelab Container
 
-This repository provides detailed instructions on building and deploying the DCC dev container.
+This repository provides detailed instructions on building and deploying a homelab dev container.
 
 ## 📄 Table of Contents
 
