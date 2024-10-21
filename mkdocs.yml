@@ -1,0 +1,50 @@
+site_name: My homelab
+docs_dir: ./docs
+nav:
+  - Home: index.md
+  # - Setup:
+  #     # - Installation: setup/installation.md
+  #     # - Configuration: setup/configuration.md
+  #     # - Troubleshooting: setup/troubleshooting.md
+  # - Proxmox:
+  #     - Overview: proxmox/overview.md
+  #     - Installation Guide: proxmox/installation.md
+  - Kubernetes:
+      # - Introduction: kubernetes/introduction.md
+      # - Deployment: kubernetes/deployment.md
+      # - Scaling: kubernetes/scaling.md
+      - Kubespray: kubernetes/kubespray/upgrade-process.md
+  # - FluxCD:
+  #     - Setup: fluxcd/setup.md
+  #     - Best Practices: fluxcd/best-practices.md
+  # - How-Tos:
+  #     - Proxmox How-To: how-tos/proxmox-how-to.md
+  #     - Kubernetes How-To: how-tos/kubernetes-how-to.md
+  - External Access: 
+    - Traefik: cloudflared/traefik/cloudflared-traefik.md
+    - Traefik-HAProxy: cloudflared/traefik/cloudflared-ha-proxy-traefik.md
+
+  - Docker:
+    - Development Container: docker/dev_container/README.md
+
+  - Linux Admin:
+    - dd
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.sections
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: red
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
