@@ -23,12 +23,18 @@ nav:
   - External Access: 
     - Traefik: cloudflared/traefik/cloudflared-traefik.md
     - Traefik-HAProxy: cloudflared/traefik/cloudflared-ha-proxy-traefik.md
-
+  
   - Docker:
     - Development Container: docker/dev_container/README.md
+  
+  - Proxmox:
+    - Delete VM config file: proxmox/delete_existing_vm_conf.md
+  
+  - Terraform: 
+    - push module to gitlab terraform registry: terraform/push_module_to_gitlab.md
 
   - Linux Admin:
-    - dd
+    - change cloud-init vm dns config: linux_admin/change_dns_config_cloud-init_vm.md
 theme:
   name: material
   features:
