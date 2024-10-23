@@ -80,7 +80,7 @@ extra_css:
 
 theme:
   name: material
-  custom_dir: "doc/_overrides"
+  custom_dir: "./docs/_overrides"
   features:
     - navigation.tabs
     - navigation.top
