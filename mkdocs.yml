@@ -56,3 +56,7 @@ theme:
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
+extra:
+  social:
+    - icon: simple-buymeacoffee
+      link: buymeacoffee.com/RoryMcMullan
