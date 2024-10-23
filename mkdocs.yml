@@ -15,9 +15,9 @@ nav:
       # - Scaling: kubernetes/scaling.md
       - Kubespray: kubernetes/kubespray/upgrade-process.md
   - GitOps:
-      - FluxCD: gitops/fluxcd/components_fluxcd.md
-      - FluxCD: gitops/fluxcd/structuring_repo_fluxcd.md
-      - FluxCD: gitops/fluxcd/my_fluxcd.md
+      - FluxCD components: gitops/fluxcd/components_fluxcd.md
+      - FluxCD structuring a repository: gitops/fluxcd/structuring_repo_fluxcd.md
+      - FluxCD my configuration: gitops/fluxcd/my_fluxcd.md
 
   - How-Tos:
       - Proxmox How-To: how-tos/proxmox-how-to.md
