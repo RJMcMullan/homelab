@@ -70,6 +70,10 @@ theme:
         name: Switch to light mode
 
 extra:
-  social:
-    - icon: simple-buymeacoffee
-      link: buymeacoffee.com/RoryMcMullan
+  footer:
+    - |
+      <a href="https://www.buymeacoffee.com/RoryMcMullan" target="_blank">
+        <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" 
+             alt="Buy Me A Coffee" 
+             style="height: 60px !important;width: 217px !important;">
+      </a>
