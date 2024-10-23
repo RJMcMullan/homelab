@@ -14,12 +14,12 @@ nav:
       # - Deployment: kubernetes/deployment.md
       # - Scaling: kubernetes/scaling.md
       - Kubespray: kubernetes/kubespray/upgrade-process.md
-  # - FluxCD:
-  #     - Setup: fluxcd/setup.md
-  #     - Best Practices: fluxcd/best-practices.md
-  # - How-Tos:
-  #     - Proxmox How-To: how-tos/proxmox-how-to.md
-  #     - Kubernetes How-To: how-tos/kubernetes-how-to.md
+  - GitOps:
+      - FluxCD: gitops/fluxcd/fluxcd.md
+      - Best Practices: fluxcd/best-practices.md
+  - How-Tos:
+      - Proxmox How-To: how-tos/proxmox-how-to.md
+      - Kubernetes How-To: how-tos/kubernetes-how-to.md
   - External Access: 
     - Traefik: cloudflared/traefik/cloudflared-traefik.md
     - Traefik-HAProxy: cloudflared/traefik/cloudflared-ha-proxy-traefik.md
