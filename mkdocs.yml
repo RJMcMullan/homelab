@@ -15,8 +15,10 @@ nav:
       # - Scaling: kubernetes/scaling.md
       - Kubespray: kubernetes/kubespray/upgrade-process.md
   - GitOps:
-      - FluxCD: gitops/fluxcd/fluxcd.md
-      - Best Practices: fluxcd/best-practices.md
+      - FluxCD: gitops/fluxcd/components_fluxcd.md
+      - FluxCD: gitops/fluxcd/structuring_repo_fluxcd.md
+      - FluxCD: gitops/fluxcd/my_fluxcd.md
+
   - How-Tos:
       - Proxmox How-To: how-tos/proxmox-how-to.md
       - Kubernetes How-To: how-tos/kubernetes-how-to.md
