@@ -84,7 +84,6 @@ Each environment (e.g., dev, staging, prod) has its own directory or repository.
 Example:
 
 ```bash
-Copy code
 flux-repo/
 ├── dev/
 │   ├── apps/
