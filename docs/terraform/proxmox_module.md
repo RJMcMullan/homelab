@@ -69,7 +69,7 @@ terraform {
   }
 }
 ``` 
-##### main.tf
+##### cloud-init.tf
 ```hcl
 #===============================================================================
 # Cloud Config (cloud-init)
@@ -96,11 +96,13 @@ chpasswd:
 users:
   - name: ${each.value.username}
     gecos: ${each.value.fullname}
-    sudo: ALL=(ALL) NOPASSWD:ALL
+    sudo: "${join(", ", each.value.sudo_config)}"
     groups: "${join(", ", each.value.groups)}"
     lock_passwd: false
     ssh_authorized_keys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCRGXMohsqSC9uvxb+BWEACVg5lZGVjhA4i4skD5KGwDK2PgMqLSDOKPiKjTceXC5EXpwWZXtthXC7nfSeAFgM0hJNV0YPDnaVLXlkx2QjOxTyxjEebAOobrwxM0027w3pukTXU9slHzfiwANAbvDwk4eb+jShOAchsOcXyV7a3wHHJrz5oOEIxtkKmPYFyf++EnBEKPes8ETKt9LzKPlle7BQleyapmT1VdWtaDb3G1BzkJJmB53MGIzg4hxbKdvuWATYP14n8kBZT5nLURyVWqQC6h++szXUNJHIs4D4hC17NSAiYwOGQDD+OfPF4K4wpIGQQYdEy9kmrqTbnIU6Q9h1xAbwqq7+oyOAoFkgoUD2JsH1jBCij8uBNpfFiKVqrxm406PiJ/FWZnMxjZF6XFV/nqlttMdHCiZWKaxIaSMtIaZbrbzG7FwEkBWA2gQCKOc7ygLQsHQmlpbMyh2Z4aIAbEcYndkopC9XcEsHS1qcJVRIV4frT2oDO/h8JY2U= rory@rory-Z390-M-GAMING
+    %{ for key in each.value.ssh_authorized_keys ~}
+      - ${key}
+    %{ endfor ~}
 chpasswd:
   ## Forcing user to change the default password at first login
   expire: true
@@ -123,32 +125,108 @@ power_state:
     file_name = "pve-vm-${each.value.name}-cloud-init.yaml"
   }
 }
-
-#===============================================================================
-# Ubuntu Cloud Image
-#===============================================================================
-
-# resource "proxmox_virtual_environment_download_file" "cloud_image" {
-#   for_each     = var.pve_vms
-  
-#   content_type = each.value.cloud_image_content_type
-#   datastore_id = each.value.cloud_image_datastore_id
-#   node_name    = each.value.cloud_image_node_name
-#   url          = each.value.cloud_image_url
-# }
-
-
-# resource "proxmox_virtual_environment_file" "cloud_image" {
-#   for_each     = var.pve_vms
-#   content_type = each.value.cloud_image_content_type
-#   datastore_id = each.value.cloud_init_datastore_id
-#   node_name    = each.value.cloud_image_node_name
-
-#   source_file {
-#     path = each.value.cloud_image_url
-#   }
-# }
 ``` 
+#### vm.tf
+
+```hcl
+resource "proxmox_virtual_environment_vm" "virtual_machine" {
+  for_each = var.pve_vms
+
+  name        = each.value.name
+  description = each.value.vm_description
+  node_name   = each.value.node_name
+  migrate     = false // migrate the VM on node change
+  vm_id       = each.value.vm_id
+  tags        = each.value.tags
+
+  clone {
+    vm_id = each.value.clone_id
+  }
+
+  bios    = each.value.bios
+  machine = each.value.machine
+
+  memory {
+    dedicated = each.value.memory
+  }
+
+  cpu {
+    cores   = each.value.cores
+    numa    = each.value.numa
+    sockets = each.value.sockets
+
+  }
+
+  serial_device {}
+
+  vga {
+    enabled = each.value.vga_enabled
+    memory  = each.value.vga_memory
+    type    = each.value.vga_type
+
+
+  }
+
+  agent {
+    enabled = each.value.agent_enabled
+    timeout = each.value.agent_timeout
+  }
+
+  # startup {
+  #   order      = each.value.startup_order
+  #   up_delay   = each.value.startup_delay
+  #   down_delay = each.value.startup_down_delay
+  # }
+
+  operating_system {
+    type = each.value.os_type
+  }
+
+  scsi_hardware = each.value.scsi_hardware
+
+
+  initialization {
+    ip_config {
+      ipv4 {
+        address = each.value.ipv4_address
+        gateway = var.gateway_ip
+      }
+      ipv6 {
+        address = "dhcp"
+
+      }
+    }
+
+    dns {
+      servers = each.value.dns
+    }
+
+    user_data_file_id = proxmox_virtual_environment_file.cloud_init[each.key].id
+  }
+
+  # boot disk
+  disk {
+    datastore_id = each.value.boot_disk_datastore_id
+    interface    = each.value.boot_disk_interface
+    size         = each.value.boot_disk_size
+  }
+
+  # attached disks from data_vm
+  dynamic "disk" {
+    for_each = each.value.disks
+    content {
+      datastore_id = disk.value.disk_datastore_id
+      file_format  = disk.value.disk_file_format
+      size         = disk.value.disk_size
+      # assign from scsi1 and up
+      interface = disk.value.disk_interface
+
+
+    }
+
+  }
+}
+```
 ##### local.tf
 ```hcl
 resource "proxmox_virtual_environment_vm" "virtual_machine" {
