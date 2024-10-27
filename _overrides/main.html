@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+  <!-- Add scripts that need to run before here -->
+  <div style="display: flex; justify-content: center; align-items: center; height: 100px;">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" 
+      data-name="bmc-button" 
+      data-slug="RoryMcMullan" 
+      data-color="#FFDD00" 
+      data-emoji="" 
+      data-font="Cookie" 
+      data-text="Buy me a coffee" 
+      data-outline-color="#000000" 
+      data-font-color="#000000" 
+      data-coffee-color="#ffffff">
+    </script>
+  </div>
+  {{ super() }}  <!-- This includes any other scripts that the base theme may have -->
+  <!-- Add scripts that need to run afterwards here -->
+{% endblock %}

@@ -1,0 +1,1742 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../structuring_repo_fluxcd/">
+      
+      
+        <link rel="next" href="../../../cloudflared/traefik/cloudflared-traefik/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>FluxCD my configuration - My homelab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#my-configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="My homelab" class="md-header__button md-logo" aria-label="My homelab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My homelab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              FluxCD my configuration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../blog/" class="md-tabs__link">
+          
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../kubernetes/kubespray/upgrade-process/" class="md-tabs__link">
+          
+  
+  Kubernetes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../components_fluxcd/" class="md-tabs__link">
+          
+  
+  GitOps
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../how-tos/proxmox-how-to.md" class="md-tabs__link">
+          
+  
+  How-Tos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../cloudflared/traefik/cloudflared-traefik/" class="md-tabs__link">
+          
+  
+  External Access
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../docker/dev_container/" class="md-tabs__link">
+          
+  
+  Docker
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../proxmox/delete_existing_vm_conf/" class="md-tabs__link">
+          
+  
+  Proxmox
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../terraform/push_module_to_gitlab/" class="md-tabs__link">
+          
+  
+  Terraform
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../linux_admin/change_dns_config_cloud-init_vm/" class="md-tabs__link">
+          
+  
+  Linux Admin
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="My homelab" class="md-nav__button md-logo" aria-label="My homelab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My homelab
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    My Blog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kubernetes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Kubernetes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kubernetes/kubespray/upgrade-process/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubespray
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    GitOps
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            GitOps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components_fluxcd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FluxCD components
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structuring_repo_fluxcd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FluxCD structuring a repository
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    FluxCD my configuration
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    FluxCD my configuration
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fluxcd-gitops-bootstrap-with-gitlab" class="md-nav__link">
+    <span class="md-ellipsis">
+      FluxCD GitOps Bootstrap with GitLab
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Steps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-create-the-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Create the Directory Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-a-personal-access-token-pat-in-gitlab" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Create a Personal Access Token (PAT) in GitLab
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-set-the-personal-access-token-pat-as-an-environment-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Set the Personal Access Token (PAT) as an Environment Variable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-bootstrap-fluxcd-with-gitlab" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Bootstrap FluxCD with GitLab
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation-of-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation of Flags:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-verify-the-bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Verify the Bootstrap
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    How-Tos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            How-Tos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../how-tos/proxmox-how-to.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Proxmox How-To
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../how-tos/kubernetes-how-to.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes How-To
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    External Access
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            External Access
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudflared/traefik/cloudflared-traefik/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Traefik
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudflared/traefik/cloudflared-ha-proxy-traefik/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Traefik-HAProxy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docker/dev_container/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development Container
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Proxmox
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Proxmox
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../proxmox/delete_existing_vm_conf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Delete VM config file
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Terraform
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Terraform
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../terraform/push_module_to_gitlab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Push module to gitlab terraform registry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../terraform/proxmox_module/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Proxmox terraform module
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux Admin
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Linux Admin
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_admin/change_dns_config_cloud-init_vm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    change cloud-init vm dns config
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fluxcd-gitops-bootstrap-with-gitlab" class="md-nav__link">
+    <span class="md-ellipsis">
+      FluxCD GitOps Bootstrap with GitLab
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Steps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-create-the-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Create the Directory Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-a-personal-access-token-pat-in-gitlab" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Create a Personal Access Token (PAT) in GitLab
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-set-the-personal-access-token-pat-as-an-environment-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Set the Personal Access Token (PAT) as an Environment Variable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-bootstrap-fluxcd-with-gitlab" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Bootstrap FluxCD with GitLab
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation-of-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation of Flags:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-verify-the-bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Verify the Bootstrap
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="my-configuration">My Configuration<a class="headerlink" href="#my-configuration" title="Permanent link">&para;</a></h1>
+<h2 id="fluxcd-gitops-bootstrap-with-gitlab">FluxCD GitOps Bootstrap with GitLab<a class="headerlink" href="#fluxcd-gitops-bootstrap-with-gitlab" title="Permanent link">&para;</a></h2>
+<p>This section provides instructions for bootstrapping FluxCD with GitLab using a Personal Access Token (PAT). Follow these steps to create a FluxCD setup that automatically synchronizes your Kubernetes manifests with a GitLab repository.</p>
+<h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
+<h3 id="1-create-the-directory-structure">1. Create the Directory Structure<a class="headerlink" href="#1-create-the-directory-structure" title="Permanent link">&para;</a></h3>
+<p>First, create the necessary directory structure for FluxCD to store the cluster configurations.</p>
+<p><div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>clusters/k8s-prod
+</code></pre></div>
+This command creates the clusters/k8s-prod directory where FluxCD will store and apply your Kubernetes manifests.</p>
+<h3 id="2-create-a-personal-access-token-pat-in-gitlab">2. Create a Personal Access Token (PAT) in GitLab<a class="headerlink" href="#2-create-a-personal-access-token-pat-in-gitlab" title="Permanent link">&para;</a></h3>
+<p>To authenticate FluxCD with GitLab, you need to create a Personal Access Token (PAT) with the api scope in GitLab.</p>
+<ol>
+<li>Go to GitLab and navigate to User Settings &gt; Access Tokens.</li>
+<li>Create a new token with the following settings:<ul>
+<li>Name: FluxCD Token</li>
+<li>Scopes: Select the api scope.</li>
+</ul>
+</li>
+<li>Copy the generated token and store it in a safe place. You will use this token to authenticate FluxCD with GitLab.</li>
+</ol>
+<h3 id="3-set-the-personal-access-token-pat-as-an-environment-variable">3. Set the Personal Access Token (PAT) as an Environment Variable<a class="headerlink" href="#3-set-the-personal-access-token-pat-as-an-environment-variable" title="Permanent link">&para;</a></h3>
+<p>Export the GitLab PAT token as an environment variable in your terminal.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">GITLAB_TOKEN</span><span class="o">=</span>&lt;token<span class="w"> </span>here&gt;
+</code></pre></div>
+<h3 id="4-bootstrap-fluxcd-with-gitlab">4. Bootstrap FluxCD with GitLab<a class="headerlink" href="#4-bootstrap-fluxcd-with-gitlab" title="Permanent link">&para;</a></h3>
+<p>Now, bootstrap FluxCD with your GitLab repository using the following command:</p>
+<div class="highlight"><pre><span></span><code>flux<span class="w"> </span>bootstrap<span class="w"> </span>gitlab<span class="w"> </span>--token-auth<span class="w"> </span>--ca-file<span class="o">=</span>ca.crt<span class="w"> </span>--hostname<span class="o">=</span>https://gitlab-docker01.internal<span class="w"> </span>--owner<span class="o">=</span><span class="s2">&quot;homelab&quot;</span><span class="w"> </span>--repository<span class="w"> </span><span class="s2">&quot;flux-k8s-gitops&quot;</span><span class="w"> </span>--branch<span class="o">=</span>main<span class="w"> </span>--path<span class="o">=</span>clusters/k8s-prod
+</code></pre></div>
+<h3 id="explanation-of-flags">Explanation of Flags:<a class="headerlink" href="#explanation-of-flags" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>--token-auth</code>: Specifies that the authentication will be done using the GitLab PAT token.</li>
+<li><code>--ca-file=ca.crt</code>: Specifies the CA file for SSL verification (if using internal GitLab hosting with custom CA).</li>
+<li><code>--hostname=https://gitlab-docker01.internal</code>: The URL of your self-hosted GitLab instance.</li>
+<li><code>--owner="homelab"</code>: The GitLab group or user that owns the repository.</li>
+<li><code>--repository "flux-k8s-gitops"</code>: The GitLab repository where FluxCD will store and track the manifests.</li>
+<li><code>---branch=main</code>: The Git branch to track for changes.</li>
+<li><code>--path=clusters/k8s-prod</code>: The path within the repository where the cluster configurations are stored.</li>
+</ul>
+<h3 id="5-verify-the-bootstrap">5. Verify the Bootstrap<a class="headerlink" href="#5-verify-the-bootstrap" title="Permanent link">&para;</a></h3>
+<p>After running the bootstrap command, FluxCD should automatically install its components and begin tracking your GitLab repository for changes.</p>
+<p>To verify that FluxCD has been successfully bootstrapped, use the following command:</p>
+<p><div class="highlight"><pre><span></span><code>flux<span class="w"> </span>check
+</code></pre></div>
+This command checks the status of FluxCD and confirms that it has successfully synchronized with your GitLab repository.</p>
+<h1 id="fluxcd-gitops-monorepo-deployment-with-base-and-overlay-structure">FluxCD GitOps (Monorepo) Deployment with Base and Overlay Structure<a class="headerlink" href="#fluxcd-gitops-monorepo-deployment-with-base-and-overlay-structure" title="Permanent link">&para;</a></h1>
+<p>My repository is structured for deploying applications and infrastructure using FluxCD in a Kubernetes cluster. Everything which is deployed is contained in a single git repository. It follows a base and overlay pattern, with base Helm configurations and environment-specific patches for production. Additionally, the <code>flux-system</code> directory contains the FluxCD bootstrap components, and Flux is configured to automatically apply changes when they are pushed to the main branch.</p>
+<h2 id="repository-structure">Repository Structure<a class="headerlink" href="#repository-structure" title="Permanent link">&para;</a></h2>
+<p>The repository is organized as follows:</p>
+<ul>
+<li><code>apps/</code></li>
+<li><code>base/</code>: Contains the base Helm configurations for all applications.</li>
+<li>
+<p><code>production/</code>: Contains overlay configurations to patch the base for production deployments.</p>
+</li>
+<li>
+<p><code>infrastructure/</code></p>
+</li>
+<li><code>base/</code>: Contains the base configurations for infrastructure components (e.g., Grafana, NGINX Ingress, Loki, MetalLB, NFS Subdir External Provisioner etc).</li>
+<li>
+<p><code>production/</code>: Contains overlay configurations for infrastructure components for the production environment.</p>
+</li>
+<li>
+<p><code>clusters/</code></p>
+</li>
+<li><code>k8s-prod/</code><ul>
+<li><code>infrastructure.yaml</code>: Contains the            kustomization files to deploy the infrastructure components.</li>
+<li><code>apps.yaml</code>: Contains the kustomization files to recursively deploy applications.</li>
+<li><code>flux-system/</code>: Contains the FluxCD bootstrap components, including the controllers and initial configuration for GitOps integration.</li>
+</ul>
+</li>
+</ul>
+<h2 id="key-components">Key Components<a class="headerlink" href="#key-components" title="Permanent link">&para;</a></h2>
+<h3 id="base-configurations-appsbase">Base Configurations (<code>apps/base</code>)<a class="headerlink" href="#base-configurations-appsbase" title="Permanent link">&para;</a></h3>
+<p>The <code>apps/base</code> directory contains the default Helm configurations for the applications. These are reusable across different environments (e.g., production, staging, development).</p>
+<h3 id="production-overlays-appsproduction">Production Overlays (<code>apps/production</code>)<a class="headerlink" href="#production-overlays-appsproduction" title="Permanent link">&para;</a></h3>
+<p>The <code>apps/production</code> directory contains the overlays to patch the base configurations specifically for the production environment. These overlays may modify the base configurations to adjust resource limits, replicas, or other production-specific settings.</p>
+<h3 id="cluster-specific-kustomization-clustersk8s-prod">Cluster-Specific Kustomization (<code>clusters/k8s-prod/</code>)<a class="headerlink" href="#cluster-specific-kustomization-clustersk8s-prod" title="Permanent link">&para;</a></h3>
+<p>The <code>clusters/k8s-prod</code> directory contains the <code>Kustomization</code> resource to apply the production environment configuration to the cluster.</p>
+<h3 id="flux-bootstrap-components-clustersflux-system">Flux Bootstrap Components (<code>clusters/flux-system/</code>)<a class="headerlink" href="#flux-bootstrap-components-clustersflux-system" title="Permanent link">&para;</a></h3>
+<p>The <code>clusters/flux-system</code> directory contains the FluxCD bootstrap components, which manage the GitOps workflow, monitor the repository, and apply changes automatically when updates are pushed to the main branch.</p>
+<h3 id="example-kustomizationyaml-for-production">Example <code>Kustomization.yaml</code> for Production<a class="headerlink" href="#example-kustomizationyaml-for-production" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kustomize.toolkit.fluxcd.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Kustomization</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flux-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10m0s</span>
+<span class="w">  </span><span class="nt">dependsOn</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx</span>
+<span class="w">  </span><span class="nt">sourceRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitRepository</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flux-system</span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./apps/production</span>
+<span class="w">  </span><span class="nt">prune</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">wait</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5m0s</span>
+</code></pre></div>
+<h3 id="key-parameters">Key Parameters<a class="headerlink" href="#key-parameters" title="Permanent link">&para;</a></h3>
+<ul>
+<li>interval: FluxCD will check for updates every 10 minutes.</li>
+<li>dependsOn: Specifies that the deployment of the applications depends on the successful deployment of the ingress-nginx Kustomization.</li>
+<li>sourceRef: Points to the GitRepository resource (flux-system), which provides the configurations for deployment.</li>
+<li>path: Specifies the path to the production-specific overlay configurations (./apps/production).</li>
+<li>prune: Ensures that resources no longer present in the Git repository are deleted from the cluster.</li>
+<li>wait: Ensures that FluxCD waits for all resources to be fully ready before proceeding.</li>
+<li>timeout: Sets the maximum wait time for resources to become ready (5 minutes).</li>
+<li>Deployment Process</li>
+</ul>
+<h2 id="infrastructure-kustomizations">Infrastructure Kustomizations<a class="headerlink" href="#infrastructure-kustomizations" title="Permanent link">&para;</a></h2>
+<p>The <code>infrastructure.yaml</code> file in the <code>clusters/k8s-prod/</code> directory includes multiple Kustomizations for various infrastructure components. These Kustomizations specify dependencies, intervals, retry intervals, timeouts, and paths for each component.</p>
+<h3 id="example-kustomizations-in-infrastructureyaml">Example Kustomizations in <code>infrastructure.yaml</code><a class="headerlink" href="#example-kustomizations-in-infrastructureyaml" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kustomize.toolkit.fluxcd.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Kustomization</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flux-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">dependsOn</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metallb</span>
+<span class="w">  </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1h</span>
+<span class="w">  </span><span class="nt">retryInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1m</span>
+<span class="w">  </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15m</span>
+<span class="w">  </span><span class="nt">sourceRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitRepository</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flux-system</span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./infrastructure/production/ingress-nginx</span>
+<span class="w">  </span><span class="nt">prune</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">wait</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kustomize.toolkit.fluxcd.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Kustomization</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-manager</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flux-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1h</span>
+<span class="w">  </span><span class="nt">retryInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1m</span>
+<span class="w">  </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5m</span>
+<span class="w">  </span><span class="nt">sourceRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitRepository</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flux-system</span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./infrastructure/production/cert-manager</span>
+<span class="w">  </span><span class="nt">prune</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">wait</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kustomize.toolkit.fluxcd.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Kustomization</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">infra-configs</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flux-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">dependsOn</span><span class="p">:</span><span class="w"> </span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-manager</span>
+<span class="w">  </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1h</span>
+<span class="w">  </span><span class="nt">retryInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1m</span>
+<span class="w">  </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5m</span>
+<span class="w">  </span><span class="nt">sourceRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitRepository</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flux-system</span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./infrastructure/production/configs</span>
+<span class="w">  </span><span class="nt">prune</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">wait</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kustomize.toolkit.fluxcd.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Kustomization</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metallb</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flux-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1h</span>
+<span class="w">  </span><span class="nt">retryInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1m</span>
+<span class="w">  </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5m</span>
+<span class="w">  </span><span class="nt">sourceRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitRepository</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flux-system</span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./infrastructure/production/metallb</span>
+<span class="w">  </span><span class="nt">prune</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">wait</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kustomize.toolkit.fluxcd.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Kustomization</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grafana</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flux-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5m</span>
+<span class="w">  </span><span class="nt">dependsOn</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nfs-subdir-external-provisioner</span>
+<span class="w">  </span><span class="nt">sourceRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitRepository</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flux-system</span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./infrastructure/production/grafana</span>
+<span class="w">  </span><span class="nt">prune</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">wait</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<p>Since FluxCD is bootstrapped to monitor the main branch of this repository for changes, any updates pushed to the repository will be automatically applied to the cluster. There’s no need to manually run kubectl apply -k.</p>
+<h3 id="how-it-works">How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h3>
+<p>Push Changes: When you push new changes or updates to the main branch, FluxCD will automatically detect the changes and apply them to your Kubernetes cluster.
+Monitor the Deployment: </p>
+<p>You can monitor the status of the FluxCD deployment using the following commands:</p>
+<div class="highlight"><pre><span></span><code>flux<span class="w"> </span>get<span class="w"> </span>kustomizations<span class="w"> </span>-n<span class="w"> </span>flux-system<span class="w"> </span><span class="c1"># Gets all the kustomizations in that namespace</span>
+
+flux<span class="w"> </span>get<span class="w"> </span>helmrelease<span class="w"> </span>ingress-nginx<span class="w"> </span>-n<span class="w"> </span>ingress-nginx<span class="w"> </span><span class="c1"># Gets helm releases in that namespace</span>
+
+flux<span class="w"> </span>events<span class="w"> </span>-n<span class="w"> </span>ingress-nginx<span class="w"> </span><span class="c1"># This gets all flux events in that namespace</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../structuring_repo_fluxcd/" class="md-footer__link md-footer__link--prev" aria-label="Previous: FluxCD structuring a repository">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                FluxCD structuring a repository
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../../cloudflared/traefik/cloudflared-traefik/" class="md-footer__link md-footer__link--next" aria-label="Next: Traefik">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Traefik
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.top", "navigation.sections", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+  <!-- Add scripts that need to run before here -->
+  <div style="display: flex; justify-content: center; align-items: center; height: 100px;">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" 
+      data-name="bmc-button" 
+      data-slug="RoryMcMullan" 
+      data-color="#FFDD00" 
+      data-emoji="" 
+      data-font="Cookie" 
+      data-text="Buy me a coffee" 
+      data-outline-color="#000000" 
+      data-font-color="#000000" 
+      data-coffee-color="#ffffff">
+    </script>
+  </div>
+  
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+      <!-- This includes any other scripts that the base theme may have -->
+  <!-- Add scripts that need to run afterwards here -->
+
+  </body>
+</html>
