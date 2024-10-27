@@ -35,7 +35,8 @@ nav:
     - Delete VM config file: proxmox/delete_existing_vm_conf.md
   
   - Terraform: 
-    - push module to gitlab terraform registry: terraform/push_module_to_gitlab.md
+    - Push module to gitlab terraform registry: terraform/push_module_to_gitlab.md
+    - Proxmox terraform module: terraform/proxmox_module.md
 
   - Linux Admin:
     - change cloud-init vm dns config: linux_admin/change_dns_config_cloud-init_vm.md
